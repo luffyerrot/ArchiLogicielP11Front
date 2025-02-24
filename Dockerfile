@@ -15,6 +15,6 @@ COPY . .
 # construit l'app pour la production en la minifiant
 RUN yarn run build
 
-EXPOSE 80
+EXPOSE 8082
 
 CMD [ "yarn", "serve", "--port=8082" ]
