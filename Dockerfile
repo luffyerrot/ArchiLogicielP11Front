@@ -17,4 +17,4 @@ RUN yarn run build
 
 EXPOSE 8082
 
-CMD [ "yarn", "serve", "--port=8082" ]
+CMD [ "yarn", "serve" ]
