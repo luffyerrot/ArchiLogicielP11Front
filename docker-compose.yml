@@ -5,10 +5,7 @@ services:
         restart: always
         environment:
             - GOOGLE_MAP_API_KEY=AIzaSyB86d0Y3Drd6HxhN2aYDI-hnkLf6rw1WmE
+            - API_SEARCH_URL=http://192.168.1.166:8080
+            - API_USER_URL=http://192.168.1.166:8081
         ports:
-            - '8082:80'
-        volumes:
-            - medhead_ihm:/nginx/html
-volumes:
-    medhead_ihm:
-        driver: local
+            - '8082:8080'
