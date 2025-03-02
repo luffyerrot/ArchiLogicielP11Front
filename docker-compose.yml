@@ -6,9 +6,9 @@ services:
         environment:
             - GOOGLE_MAP_API_KEY=AIzaSyB86d0Y3Drd6HxhN2aYDI-hnkLf6rw1WmE
         ports:
-            - '8082:8080'
+            - '8082:80'
         volumes:
-            - medhead_ihm:/app
+            - medhead_ihm:/nginx/html
 volumes:
     medhead_ihm:
         driver: local

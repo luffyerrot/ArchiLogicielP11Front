@@ -1,20 +1,21 @@
-FROM node:lts-alpine
+FROM node:lts-alpine as build-stage
 
-# définit le dossier 'app' comme dossier de travail
 WORKDIR /app
 
-# copie 'package.json' et 'package-lock.json' (si disponible)
 COPY package*.json ./
 
-# installe les dépendances du projet
+COPY yarn.lock ./
+
 RUN yarn install
 
-# copie les fichiers et dossiers du projet dans le dossier de travail (par exemple : le dossier 'app')
 COPY . .
 
-# construit l'app pour la production en la minifiant
 RUN yarn run build
 
-EXPOSE 8082
+FROM nginx:stable-alpine as production-stage
 
-CMD [ "yarn", "serve", "--", "--port=8082" ]
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD [ "nginx", "-g", "daemon off;" ]
