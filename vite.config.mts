@@ -10,6 +10,9 @@ import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 // Utilities
 import { defineConfig } from 'vitest/config'
 import { fileURLToPath, URL } from 'node:url'
+import { loadEnv } from 'vite'
+
+const env = loadEnv('all', process.cwd(), '');
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -72,13 +75,13 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
+        target: env.API_SEARCH_URL,
         changeOrigin: true,
         secure: false,
         ws: false
       },
       '/user': {
-        target: 'http://localhost:8081',
+        target: env.API_USER_URL,
         changeOrigin: true,
         secure: false,
         ws: false
